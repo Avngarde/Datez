@@ -63,7 +63,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Db/" />
 	  <Folder Include="Resources/Images/" />
 	</ItemGroup>
 
