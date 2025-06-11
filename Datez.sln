@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datez", "Datez\Datez.csproj", "{ED557B56-9F42-4D76-8B7F-16650B7389E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatezTests", "DatezTests\DatezTests.csproj", "{F7E1EDF2-8F4E-4800-8BA3-61B3F056A7A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{ED557B56-9F42-4D76-8B7F-16650B7389E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED557B56-9F42-4D76-8B7F-16650B7389E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED557B56-9F42-4D76-8B7F-16650B7389E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7E1EDF2-8F4E-4800-8BA3-61B3F056A7A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7E1EDF2-8F4E-4800-8BA3-61B3F056A7A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7E1EDF2-8F4E-4800-8BA3-61B3F056A7A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7E1EDF2-8F4E-4800-8BA3-61B3F056A7A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

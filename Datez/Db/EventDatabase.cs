@@ -8,6 +8,12 @@ public class EventDatabase : IDatabase<Event>
 {
     SQLiteAsyncConnection database;
 
+    // ONLY FOR MOCKING
+    public EventDatabase(SQLiteAsyncConnection testConnection = null)
+    {
+        database = testConnection;
+    }
+
     public async Task<int> Add(Event item)
     {
         Init();
