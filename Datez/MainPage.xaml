@@ -1,14 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Datez.ViewModels"
              x:Class="Datez.MainPage">
+
+<ContentPage.BindingContext>
+    <vm:MainPageViewModel />
+</ContentPage.BindingContext>
 
     <ScrollView>
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
             <Label
-                Text="Hello, Datez!"
+                Text="{Binding TestText}" 
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" />
         </VerticalStackLayout>
