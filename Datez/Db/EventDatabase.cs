@@ -8,8 +8,7 @@ public class EventDatabase : IDatabase<Event>
 {
     SQLiteAsyncConnection database;
 
-    // ONLY FOR MOCKING
-    public EventDatabase(SQLiteAsyncConnection testConnection = null)
+    public EventDatabase(SQLiteAsyncConnection testConnection = null) // Only for unit tests
     {
         database = testConnection;
     }
