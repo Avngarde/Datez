@@ -5,7 +5,7 @@ namespace Datez.Db;
 
 public interface IDatabase<T>
 {
-    void Init();
+    Task Init();
     Task<IEnumerable<T>> GetAll();
     Task<T> Get(int id);
     Task<int> Add(T item);

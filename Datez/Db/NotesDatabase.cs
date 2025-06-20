@@ -38,7 +38,7 @@ public class NotesDatabase : IDatabase<Note>
         return await database.Table<Note>().ToListAsync();
     }
 
-    public void Init()
+    public async Task Init()
     {
         if (database is not null)
             return;

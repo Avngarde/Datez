@@ -4,13 +4,11 @@
              x:Class="Datez.Pages.NewEventPage"
              Title="Add New Event">
 
-
     <VerticalStackLayout Margin="10" Padding="10">
-
-            <Label Margin="5" Text="Event name" />
-            <Entry Margin="5" />
+        <Label Margin="5" Text="Event name" />
+            <Entry Margin="5" Text="{Binding EventName}" />
             <Label Margin="5" Text="Event's date" />
-            <DatePicker Margin="5" MinimumDate="{Binding MinimalDate}" />
-            <Button Margin="5,10,5,5" Text="Add" />
+            <DatePicker Margin="5" Date="{Binding EventDate}" MinimumDate="{Binding MinimalDate}" />
+            <Button Margin="5,10,5,5" Text="Add" Command="{Binding AddEventCommand}" />
     </VerticalStackLayout>
 </ContentPage>

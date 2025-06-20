@@ -15,39 +15,40 @@ public class EventDatabase : IDatabase<Event>
 
     public async Task<int> Add(Event item)
     {
-        Init();
+        await Init();
         return await database.InsertAsync(item);
     }
 
     public async Task<int> Delete(Event item)
     {
-        Init();
+        await Init();
         return await database.DeleteAsync(item);
     }
 
     public async Task<int> Edit(Event item)
     {
-        Init();
+        await Init();
         return await database.UpdateAsync(item);
     }
 
     public async Task<Event> Get(int id)
     {
-        Init();
+        await Init();
         return await database.Table<Event>().Where(e => e.Id == id).FirstOrDefaultAsync();
     }
 
     public async Task<IEnumerable<Event>> GetAll()
     {
-        Init();
+        await Init();
         return await database.Table<Event>().ToListAsync();
     }
 
-    public void Init()
+    public async Task Init()
     {
         if (database is not null)
             return;
 
-        database = new SQLiteAsyncConnection(DbConstants.DatabasePath, DbConstants.Flags);        
+        database = new SQLiteAsyncConnection(DbConstants.DatabasePath, DbConstants.Flags);
+        await database.CreateTableAsync<Event>();
     }
 }
