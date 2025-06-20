@@ -8,6 +8,8 @@ public partial class MainPage : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = pageViewModel;
+
+		Loaded += async (_, _) => await pageViewModel.LoadEvents();
 	}
 }
 

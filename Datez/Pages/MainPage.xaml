@@ -8,15 +8,33 @@
     <ToolbarItem Text="Add Event" Command="{Binding OpenAddNewEventCommand}" />
 </ContentPage.ToolbarItems>
 
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Label
-                Text="{Binding TestText}" 
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
-        </VerticalStackLayout>
-    </ScrollView>
+    <CollectionView ItemsSource="{Binding Events}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid Padding="10" ColumnSpacing="10" RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="{Binding Name}" 
+                       FontAttributes="Bold"
+                       FontSize="18"/>
+
+                    <Label Text="{Binding EventDate, StringFormat='Event Date: {0:yyyy-MM-dd HH:mm}'}"
+                       Grid.Row="1"
+                       FontSize="14"
+                       TextColor="Gray"/>
+
+                    <ProgressBar Grid.Row="2"
+                             Progress="{Binding Progress, Mode=OneWay}"
+                             HeightRequest="6"
+                             BackgroundColor="#ccc"
+                             ProgressColor="MediumSeaGreen"/>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 
 </ContentPage>
