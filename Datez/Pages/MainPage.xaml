@@ -4,10 +4,6 @@
              xmlns:vm="clr-namespace:Datez.ViewModels"
              x:Class="Datez.Pages.MainPage">
 
-<ContentPage.BindingContext>
-    <vm:MainPageViewModel />
-</ContentPage.BindingContext>
-
 <ContentPage.ToolbarItems>
     <ToolbarItem Text="Add Event" Command="{Binding OpenAddNewEventCommand}" />
 </ContentPage.ToolbarItems>

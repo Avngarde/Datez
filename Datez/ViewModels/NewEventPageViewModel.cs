@@ -9,6 +9,7 @@ namespace Datez.ViewModels;
 public partial class NewEventPageViewModel : ObservableObject
 {
     private readonly IDatabase<Event> _eventDb;
+    private readonly IServiceProvider _serviceProvider;
 
     [ObservableProperty] private string? _eventName;
     [ObservableProperty] private DateTime _eventDate;
@@ -27,8 +28,9 @@ public partial class NewEventPageViewModel : ObservableObject
         await _eventDb.Add(ev);
     }
 
-    public NewEventPageViewModel(IDatabase<Event> eventDatabase)
+    public NewEventPageViewModel(IDatabase<Event> eventDatabase, IServiceProvider serviceProvider)
     {
         _eventDb = eventDatabase;
+        _serviceProvider = serviceProvider;
     }
 }

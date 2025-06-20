@@ -3,12 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Datez.Pages.NewEventPage"
              Title="Add New Event">
+
+
     <VerticalStackLayout Margin="10" Padding="10">
 
             <Label Margin="5" Text="Event name" />
             <Entry Margin="5" />
             <Label Margin="5" Text="Event's date" />
-            <DatePicker Margin="5" MinimalDate="{Binding MinimalDate}" />
+            <DatePicker Margin="5" MinimumDate="{Binding MinimalDate}" />
             <Button Margin="5,10,5,5" Text="Add" />
     </VerticalStackLayout>
 </ContentPage>
