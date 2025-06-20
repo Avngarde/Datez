@@ -2,39 +2,61 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Datez.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Datez.Pages.MainPage">
 
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>    
+    
+    
 <ContentPage.ToolbarItems>
     <ToolbarItem Text="Add Event" Command="{Binding OpenAddNewEventCommand}" />
 </ContentPage.ToolbarItems>
 
-    <CollectionView ItemsSource="{Binding Events}">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Grid Padding="10" ColumnSpacing="10" RowSpacing="5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+    <Grid>
+        <CollectionView ItemsSource="{Binding Events}" IsVisible="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" ColumnSpacing="10" RowSpacing="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                    <Label Text="{Binding Name}" 
+                        <Label Text="{Binding Name}" 
                        FontAttributes="Bold"
                        FontSize="18"/>
 
-                    <Label Text="{Binding EventDate, StringFormat='Event Date: {0:yyyy-MM-dd HH:mm}'}"
+                        <Label Text="{Binding EventDate, StringFormat='Event Date: {0:yyyy-MM-dd HH:mm}'}"
                        Grid.Row="1"
                        FontSize="14"
                        TextColor="Gray"/>
 
-                    <ProgressBar Grid.Row="2"
-                             Progress="{Binding Progress, Mode=OneWay}"
+                        <ProgressBar Grid.Row="2"
+                             Progress="1"
                              HeightRequest="6"
-                             BackgroundColor="#ccc"
+                             BackgroundColor="#ccd"
                              ProgressColor="MediumSeaGreen"/>
-                </Grid>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Grid IsVisible="{Binding IsLoading}"
+              VerticalOptions="FillAndExpand"
+              HorizontalOptions="FillAndExpand">
+            <ActivityIndicator IsRunning="True"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               Color="{StaticResource Secondary}"
+                               WidthRequest="80"
+                               HeightRequest="80" />
+        </Grid>
+    </Grid>
 
 </ContentPage>

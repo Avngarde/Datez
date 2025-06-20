@@ -15,6 +15,7 @@ public partial class MainPageViewModel : ObservableObject
     private readonly IServiceProvider _serviceProvider;
     private readonly IDatabase<Event> _eventDb;
 
+    [ObservableProperty] private bool _isLoading = true;
     [ObservableProperty] private ObservableCollection<Event> _events = new();
 
     [RelayCommand]
@@ -38,5 +39,6 @@ public partial class MainPageViewModel : ObservableObject
         Events.Clear();
         var eventsDb = await _eventDb.GetAll();
         Events = eventsDb.ToObservableCollection<Event>();
+        IsLoading = false;
     }
 }
