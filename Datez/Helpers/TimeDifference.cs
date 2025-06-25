@@ -12,12 +12,35 @@ namespace Datez.Helpers
     {
         public static TimeDiff Calculate(DateTime eventDate, DateTime currentDate)
         {
+            int days = 0;
+            int months = 0;
+            int years = 0;
+
             TimeSpan diff = eventDate - currentDate;
+            int daysDiff = diff.Days;
+            if (daysDiff >= 365)
+            {
+                years = daysDiff / 365;
+                daysDiff = daysDiff - 365 * years;
+            }
+
+            if (daysDiff >= 30)
+            {
+                months = daysDiff / 30;
+                daysDiff = daysDiff - 30 * months;
+            }
+
+            if (daysDiff < 30)
+            {
+                days = daysDiff;
+            }
+
+
             return new TimeDiff()
             {
-                Years = CalculateYearsDifference(diff.Days),
-                Months = CalculateMonthDifference(diff.Days),
-                Days = CalculateDaysDifference(diff.Days),
+                Years = years,
+                Months = months,
+                Days = days
             };
         }
 
@@ -25,28 +48,6 @@ namespace Datez.Helpers
         {
             double percent = (double)daysDifference / (double)originalDaysDifference;
             return (int)(percent * 100);
-        }
-
-        private static int CalculateMonthDifference(int daysDiff)
-        {
-            return (daysDiff / 30) - 12;
-        }
-
-        private static int CalculateYearsDifference(int daysDiff)
-        {
-            return daysDiff / 365;
-        }
-
-        private static int CalculateDaysDifference(int daysDiff)
-        {
-            int daysLeft = daysDiff;
-            int yearsInTimeSpan = daysLeft / 365;
-            daysLeft = daysLeft - 365 * yearsInTimeSpan;
-
-            int monthsInTimeSpan = daysLeft / 30;
-            daysLeft = daysLeft - 30 * monthsInTimeSpan;
-
-            return daysLeft;
         }
     }
 }
