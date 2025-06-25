@@ -28,11 +28,17 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Label Text="{Binding Name}" 
-                       FontAttributes="Bold"
-                       FontSize="18"/>
+                        <Label FontAttributes="Bold" FontSize="18">
+                            <Label.Text>
+                                <MultiBinding StringFormat="{}{0} - {1}">
+                                    <Binding Path="Name" />
+                                    <Binding Path="EventDate" StringFormat="{}{0:yyyy-MM-dd}" />
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                            
 
-                        <Label Text="{Binding EventDate, StringFormat='Event Date: {0:yyyy-MM-dd}'}"
+                        <Label Text="{Binding EventDate, StringFormat='{0:yyyy-MM-dd}'}"
                        Grid.Row="1"
                        FontSize="14"
                        TextColor="Gray"/>
