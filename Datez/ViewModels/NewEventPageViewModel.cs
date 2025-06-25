@@ -18,11 +18,13 @@ public partial class NewEventPageViewModel : ObservableObject
     [RelayCommand]
     public async Task AddEvent()
     {
+        TimeSpan originalDateDifference = EventDate - DateTime.Now;
         Event ev = new()
         {
             Name = EventName,
             CreateDate = DateTime.Now,
             EventDate = EventDate,
+            OriginalDaysDifference = originalDateDifference.Days
         };
 
         await _eventDb.Add(ev);

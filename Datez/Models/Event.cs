@@ -11,4 +11,5 @@ public class Event
     public string? Description { get; set; }
     public DateTime EventDate { get; set; }
     public DateTime CreateDate { get; set; }
+    public int OriginalDaysDifference { get; set; }
 }
