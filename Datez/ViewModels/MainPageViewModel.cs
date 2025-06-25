@@ -1,12 +1,13 @@
 using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-
 using Datez.Db;
 using Datez.Pages;
 using Datez.Models;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Core.Extensions;
+using Datez.Helpers.Models;
+using Datez.Helpers;
 
 namespace Datez.ViewModels;
 
@@ -16,7 +17,7 @@ public partial class MainPageViewModel : ObservableObject
     private readonly IDatabase<Event> _eventDb;
 
     [ObservableProperty] private bool _isLoading = true;
-    [ObservableProperty] private ObservableCollection<Event> _events = new();
+    [ObservableProperty] private ObservableCollection<EventUIModel> _events = new();
 
     [RelayCommand]
     public async Task OpenAddNewEvent()
@@ -38,7 +39,40 @@ public partial class MainPageViewModel : ObservableObject
     {
         Events.Clear();
         var eventsDb = await _eventDb.GetAll();
-        Events = eventsDb.ToObservableCollection<Event>();
+        foreach(Event ev in eventsDb.ToArray())
+        {
+            TimeDiff timeDifference = TimeDifference.Calculate(ev.EventDate, DateTime.Now);
+            Events.Add(
+                new EventUIModel()
+                {
+                    Id = ev.Id,
+                    Name = ev.Name,
+                    EventDate = ev.EventDate,
+                    TimeDifferenceString = CreateTimeDifferenceString(timeDifference),
+                    TimeDifferenceProgress = TimeDifference.CalculateTimeProgress(timeDifference.Days, ev.OriginalDaysDifference)
+                }
+            );
+        }
+
         IsLoading = false;
+    }
+
+    private string CreateTimeDifferenceString(TimeDiff diff)
+    {
+        string timeDiff = "";
+
+        if (diff.Days <= 0 && diff.Months <= 0 && diff.Years <= 0)
+            return "Event Due";
+
+        if (diff.Days > 0)
+            timeDiff += $"{diff.Days} Days";
+
+        if (diff.Months > 0)
+            timeDiff += $", {diff.Months} Months";
+
+        if (diff.Years > 0)
+            timeDiff += $", {diff.Years} Years";
+
+        return timeDiff;
     }
 }

@@ -37,17 +37,16 @@
                             </Label.Text>
                         </Label>
                             
-
-                        <Label Text="{Binding EventDate, StringFormat='{0:yyyy-MM-dd}'}"
-                       Grid.Row="1"
-                       FontSize="14"
-                       TextColor="Gray"/>
-
+                        <Label Text="{Binding TimeDifferenceString}"
+                            Grid.Row="1"
+                            FontSize="14"
+                            TextColor="Gray"/>
+    
                         <ProgressBar Grid.Row="2"
-                             Progress="1"
+                             Progress="{Binding TimeDifferenceProgress}"
                              HeightRequest="6"
                              BackgroundColor="#ccd"
-                             ProgressColor="MediumSeaGreen"/>
+                             ProgressColor="{StaticResource Secondary}"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
