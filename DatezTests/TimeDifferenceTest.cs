@@ -21,5 +21,12 @@ namespace DatezTests
             Assert.Equal(2, timeDiff.Months);
             Assert.Equal(2, timeDiff.Days);
         }
+
+        [Fact]
+        public void CalculateTimeDifferenceProgress_ReturnsEleven()
+        {
+            int progress = TimeDifference.CalculateTimeProgress(50, 427);
+            Assert.Equal(11, progress);
+        }
     }
 }

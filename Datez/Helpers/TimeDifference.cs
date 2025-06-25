@@ -21,6 +21,12 @@ namespace Datez.Helpers
             };
         }
 
+        public static int CalculateTimeProgress(int daysDifference, int originalDaysDifference)
+        {
+            double percent = (double)daysDifference / (double)originalDaysDifference;
+            return (int)(percent * 100);
+        }
+
         private static int CalculateMonthDifference(int daysDiff)
         {
             return (daysDiff / 30) - 12;
