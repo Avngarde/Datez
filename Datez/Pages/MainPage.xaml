@@ -32,7 +32,7 @@
                        FontAttributes="Bold"
                        FontSize="18"/>
 
-                        <Label Text="{Binding EventDate, StringFormat='Event Date: {0:yyyy-MM-dd HH:mm}'}"
+                        <Label Text="{Binding EventDate, StringFormat='Event Date: {0:yyyy-MM-dd}'}"
                        Grid.Row="1"
                        FontSize="14"
                        TextColor="Gray"/>
