@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Core.Extensions;
 using Datez.Helpers.Models;
 using Datez.Helpers;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace Datez.ViewModels;
 
@@ -29,10 +30,16 @@ public partial class MainPageViewModel : ObservableObject
         );
     }
 
-    public MainPageViewModel(IDatabase<Event> eventDatabase, IServiceProvider serviceProvider) 
-    { 
+    public MainPageViewModel(IDatabase<Event> eventDatabase, IServiceProvider serviceProvider)
+    {
         _serviceProvider = serviceProvider;
         _eventDb = eventDatabase;
+
+        WeakReferenceMessenger.Default.Register<string>(this, async (r, m) =>
+        {
+            if (m == "RefreshEvents")
+                await LoadEvents();
+        });
     }
     
     public async Task LoadEvents()

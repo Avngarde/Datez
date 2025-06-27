@@ -52,7 +52,7 @@
 
                         <BoxView Grid.Row="3"
                             HeightRequest="0.5"
-                                 Margin="0,15,0,0"
+                            Margin="0,15,0,0"
                             BackgroundColor="LightGray"
                             HorizontalOptions="Fill"/>
                     </Grid>

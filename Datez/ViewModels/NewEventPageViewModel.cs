@@ -1,6 +1,8 @@
 using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+
 using Datez.Db;
 using Datez.Models;
 
@@ -28,6 +30,9 @@ public partial class NewEventPageViewModel : ObservableObject
         };
 
         await _eventDb.Add(ev);
+
+        WeakReferenceMessenger.Default.Send("RefreshEvents");
+        await Application.Current.MainPage.Navigation.PopAsync(true);
     }
 
     public NewEventPageViewModel(IDatabase<Event> eventDatabase, IServiceProvider serviceProvider)
