@@ -17,6 +17,7 @@ public partial class NewEventPageViewModel : ObservableObject
     [ObservableProperty] private string? _eventName;
     [ObservableProperty] private DateTime _eventDate;
     [ObservableProperty] private DateTime _minimalDate = DateTime.Now;
+    [ObservableProperty] private string? _eventColor;
 
     [RelayCommand]
     public async Task AddEvent()
@@ -27,13 +28,20 @@ public partial class NewEventPageViewModel : ObservableObject
             Name = EventName,
             CreateDate = DateTime.Now,
             EventDate = EventDate,
-            OriginalDaysDifference = originalDateDifference.Days
+            OriginalDaysDifference = originalDateDifference.Days,
+            ProgressBarColor = EventColor
         };
 
         await _eventDb.Add(ev);
 
         WeakReferenceMessenger.Default.Send(new RefreshEventsMessage());
         await Application.Current.MainPage.Navigation.PopAsync(true);
+    }
+
+    [RelayCommand]
+    public void SelectColor(string color)
+    {
+        EventColor = color;
     }
 
     public NewEventPageViewModel(IDatabase<Event> eventDatabase, IServiceProvider serviceProvider)

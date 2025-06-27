@@ -12,6 +12,7 @@ namespace Datez.Helpers.Models
         public string? Name { get; set; }
         public DateTime EventDate { get; set; }
         public string TimeDifferenceString { get; set; }
+        public string? ProgressBarColor { get; set; }
         public int TimeDifferenceProgress { get; set; }
     }
 }

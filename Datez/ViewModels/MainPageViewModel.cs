@@ -56,7 +56,8 @@ public partial class MainPageViewModel : ObservableObject
                     Name = ev.Name,
                     EventDate = ev.EventDate,
                     TimeDifferenceString = CreateTimeDifferenceString(timeDifference),
-                    TimeDifferenceProgress = TimeDifference.CalculateTimeProgress(timeDifference.Days, ev.OriginalDaysDifference)
+                    TimeDifferenceProgress = TimeDifference.CalculateTimeProgress(timeDifference.Days, ev.OriginalDaysDifference),
+                    ProgressBarColor = ev.ProgressBarColor
                 }
             );
         }

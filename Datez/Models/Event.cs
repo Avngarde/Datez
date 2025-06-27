@@ -12,4 +12,5 @@ public class Event
     public DateTime EventDate { get; set; }
     public DateTime CreateDate { get; set; }
     public int OriginalDaysDifference { get; set; }
+    public string? ProgressBarColor { get; set; }
 }
