@@ -9,6 +9,7 @@ using CommunityToolkit.Maui.Core.Extensions;
 using Datez.Helpers.Models;
 using Datez.Helpers;
 using CommunityToolkit.Mvvm.Messaging;
+using Datez.Messages;
 
 namespace Datez.ViewModels;
 
@@ -35,10 +36,9 @@ public partial class MainPageViewModel : ObservableObject
         _serviceProvider = serviceProvider;
         _eventDb = eventDatabase;
 
-        WeakReferenceMessenger.Default.Register<string>(this, async (r, m) =>
+        WeakReferenceMessenger.Default.Register<RefreshEventsMessage>(this, async (r, m) =>
         {
-            if (m == "RefreshEvents")
-                await LoadEvents();
+            await LoadEvents();
         });
     }
     
