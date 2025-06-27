@@ -24,13 +24,12 @@
                 <DataTemplate>
                     <Grid Padding="10" ColumnSpacing="10" RowSpacing="5">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="15" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <Label FontAttributes="Bold" FontSize="18">
+                        <Label FontAttributes="Bold" FontSize="18" Margin="0,5,0,0">
                             <Label.Text>
                                 <MultiBinding StringFormat="{}{0} - {1}">
                                     <Binding Path="Name" />
@@ -42,19 +41,15 @@
                         <Label Text="{Binding TimeDifferenceString}"
                             Grid.Row="1"
                             FontSize="14"
+                            Margin="0,5,0,0"
                             TextColor="Gray"/>
     
                         <ProgressBar Grid.Row="2"
                              Progress="{Binding TimeDifferenceProgress}"
                              HeightRequest="6"
+                             Margin="0,5,0,0"
                              BackgroundColor="#ccd"
                              ProgressColor="{StaticResource Secondary}"/>
-
-                        <BoxView Grid.Row="3"
-                            HeightRequest="0.5"
-                            Margin="0,15,0,0"
-                            BackgroundColor="LightGray"
-                            HorizontalOptions="Fill"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
