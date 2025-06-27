@@ -27,6 +27,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="15" />
                         </Grid.RowDefinitions>
 
                         <Label FontAttributes="Bold" FontSize="18">
@@ -48,6 +49,12 @@
                              HeightRequest="6"
                              BackgroundColor="#ccd"
                              ProgressColor="{StaticResource Secondary}"/>
+
+                        <BoxView Grid.Row="3"
+                            HeightRequest="0.5"
+                                 Margin="0,15,0,0"
+                            BackgroundColor="LightGray"
+                            HorizontalOptions="Fill"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
