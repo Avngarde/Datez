@@ -19,6 +19,8 @@ public static class MauiProgram
         builder.Services.AddTransient<NewEventPageViewModel>();
         builder.Services.AddTransient<NewEventPage>();
 
+		builder.Services.AddTransient<EventPage>();
+
         builder.Services.AddSingleton<MainPageViewModel>();
         builder.Services.AddSingleton<MainPage>();
 

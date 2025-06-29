@@ -19,10 +19,15 @@
 </ContentPage.ToolbarItems>
 
     <Grid>
-        <CollectionView ItemsSource="{Binding Events}" IsVisible="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}}">
+        <CollectionView x:Name="EventsGrid" ItemsSource="{Binding Events}" IsVisible="{Binding IsLoading, Converter={StaticResource InvertedBoolConverter}}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10" ColumnSpacing="10" RowSpacing="5">
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path=BindingContext.OpenEventCommand, Source={x:Reference Name=EventsGrid}}" CommandParameter="{Binding .}" />
+                        </Grid.GestureRecognizers>
+
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />

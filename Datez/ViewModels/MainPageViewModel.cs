@@ -31,6 +31,16 @@ public partial class MainPageViewModel : ObservableObject
         );
     }
 
+    [RelayCommand]
+    public async Task OpenEvent(EventUIModel ev)
+    {
+        var eventPage = _serviceProvider.GetRequiredService<EventPage>();
+        await Application.Current.MainPage.Navigation.PushAsync
+        (
+            eventPage
+        );
+    }
+
     public MainPageViewModel(IDatabase<Event> eventDatabase, IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
