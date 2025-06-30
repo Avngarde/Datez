@@ -2,11 +2,22 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Datez.Pages.EventPage"
-             Title="EventPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to Event page!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Shell.BackgroundColor="{Binding EventColor}"
+             Title="{Binding EventName}">
+    
+    <Grid BackgroundColor="{Binding EventColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100*" />
+            <RowDefinition Height="00*" />
+        </Grid.RowDefinitions>
+
+        <Border BackgroundColor="{Binding EventColor}" StrokeThickness="0"  Grid.Row="0">
+            <Label HorizontalOptions="Center" 
+                   VerticalOptions="Center" 
+                   FontSize="Title" 
+                   TextColor="White" 
+                   FontAttributes="Bold" 
+                   Text="{Binding TimeLeft}" />
+        </Border>
+    </Grid>
 </ContentPage>

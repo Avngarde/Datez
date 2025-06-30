@@ -35,6 +35,7 @@ public partial class MainPageViewModel : ObservableObject
     public async Task OpenEvent(EventUIModel ev)
     {
         var eventPage = _serviceProvider.GetRequiredService<EventPage>();
+        eventPage.PassEvent(ev);
         await Application.Current.MainPage.Navigation.PushAsync
         (
             eventPage
