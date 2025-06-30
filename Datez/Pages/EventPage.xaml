@@ -4,6 +4,10 @@
              x:Class="Datez.Pages.EventPage"
              Shell.BackgroundColor="{Binding EventColor}"
              Title="{Binding EventName}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Delete" Command="{Binding DeleteEventCommand}" />
+    </ContentPage.ToolbarItems> 
     
     <Grid BackgroundColor="{Binding EventColor}">
         <Grid.RowDefinitions>
