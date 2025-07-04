@@ -22,6 +22,11 @@ namespace Datez.ViewModels
         [ObservableProperty] private string _eventName;
         [ObservableProperty] private string? _timeLeft;
         [ObservableProperty] private string? _eventColor;
+        [ObservableProperty]
+        private List<string> _notes = new()
+        {
+            "Test1","Test2","Test3"
+        };
 
 
         [RelayCommand]

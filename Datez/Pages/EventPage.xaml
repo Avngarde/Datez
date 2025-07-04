@@ -11,8 +11,8 @@
     
     <Grid BackgroundColor="{Binding EventColor}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100*" />
-            <RowDefinition Height="00*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
         </Grid.RowDefinitions>
 
         <Border BackgroundColor="{Binding EventColor}" StrokeThickness="0"  Grid.Row="0">
@@ -22,6 +22,29 @@
                    TextColor="White" 
                    FontAttributes="Bold" 
                    Text="{Binding TimeLeft}" />
+        </Border>
+
+        <Border Grid.Row="1" BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 40,40,0,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="80*" />
+                </Grid.RowDefinitions>
+
+                <Button Margin="5" Text="Add note" FontSize="Body"  BackgroundColor="White" TextColor="{Binding EventColor}" />
+
+                <ScrollView Margin="5" Grid.Row="1">
+                    <StackLayout BindableLayout.ItemsSource="{Binding Notes}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="8" Padding="8" StrokeShape="RoundRectangle 5" StrokeThickness="2">
+                                    <Label FontSize="Medium">Test1</Label>
+                                </Border>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
         </Border>
     </Grid>
 </ContentPage>
