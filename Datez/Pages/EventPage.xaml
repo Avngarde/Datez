@@ -31,14 +31,14 @@
                     <RowDefinition Height="80*" />
                 </Grid.RowDefinitions>
 
-                <Button Margin="5" Text="Add note" FontSize="Body"  BackgroundColor="White" TextColor="{Binding EventColor}" />
+                <Button Margin="5" Text="Add note" FontSize="Body"  BackgroundColor="White" TextColor="{Binding EventColor}" Command="{Binding AddNoteCommand}" />
 
                 <ScrollView Margin="5" Grid.Row="1">
                     <StackLayout BindableLayout.ItemsSource="{Binding Notes}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <Border Margin="8" Padding="8" StrokeShape="RoundRectangle 5" StrokeThickness="2">
-                                    <Label>Test1</Label>
+                                    <Label Text="{Binding Content}" /> 
                                 </Border>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>

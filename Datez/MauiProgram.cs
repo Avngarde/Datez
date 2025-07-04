@@ -15,6 +15,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 
         builder.Services.AddSingleton<IDatabase<Event>, EventDatabase>();
+		builder.Services.AddSingleton<IDatabase<Note>, NotesDatabase>();
 
         builder.Services.AddTransient<NewEventPageViewModel>();
         builder.Services.AddTransient<NewEventPage>();
@@ -30,8 +31,6 @@ public static class MauiProgram
 			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 				fonts.AddFont("Lato-Regular.ttf", "LatoRegular");
 				fonts.AddFont("Lato-Semibold.ttf", "LatoSemibold");
 			});

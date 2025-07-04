@@ -18,15 +18,12 @@ namespace Datez.ViewModels
         public EventUIModel? Event { get; set; }
         private readonly IServiceProvider _serviceProvider;
         private readonly IDatabase<Event> _eventDb;
+        private readonly IDatabase<Note> _noteDb;
 
         [ObservableProperty] private string _eventName;
         [ObservableProperty] private string? _timeLeft;
         [ObservableProperty] private string? _eventColor;
-        [ObservableProperty]
-        private List<string> _notes = new()
-        {
-            "Test1","Test2","Test3"
-        };
+        [ObservableProperty] private List<Note> _notes;
 
 
         [RelayCommand]
@@ -41,20 +38,47 @@ namespace Datez.ViewModels
             }
         }
 
-        public EventPageViewModel(IDatabase<Event> eventDatabase, IServiceProvider serviceProvider)
+        [RelayCommand]
+        public async Task AddNote()
+        {
+            string noteContent = await Application.Current.MainPage.DisplayPromptAsync("Add Note", "Note Content:", maxLength: 50, keyboard: Keyboard.Text);
+            if (noteContent != null && noteContent.Length > 0)
+            {
+
+                Note note = new()
+                {
+                    Content = noteContent,
+                    EventId = Event.Id
+                };
+
+                await _noteDb.Add(note);
+                await LoadNotes();
+            }
+        }
+
+        public EventPageViewModel(IDatabase<Event> eventDatabase, IDatabase<Note> notesDatabase, IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
             _eventDb = eventDatabase;
+            _noteDb = notesDatabase;
         }
 
-        public void LoadEvent()
+        public async Task LoadEvent()
         {
             if (Event != null)
             {
+                await LoadNotes();
                 TimeLeft = Event.TimeDifferenceString;
                 EventName = Event.Name;
                 EventColor = Event.ProgressBarColor;
             }
+        }
+
+        private async Task LoadNotes()
+        {
+            var notes = await _noteDb.GetAll();
+            var eventNotes = notes.Where(ev => ev.EventId == Event.Id);
+            Notes = eventNotes.ToList();
         }
     }
 }
