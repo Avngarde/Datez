@@ -56,6 +56,13 @@ namespace Datez.ViewModels
             }
         }
 
+        [RelayCommand]
+        public async Task DeleteNote(Note note)
+        {
+            await _noteDb.Delete(note);
+            await LoadNotes();
+        }
+
         public EventPageViewModel(IDatabase<Event> eventDatabase, IDatabase<Note> notesDatabase, IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
