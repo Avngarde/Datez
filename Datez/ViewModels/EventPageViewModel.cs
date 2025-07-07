@@ -25,6 +25,12 @@ namespace Datez.ViewModels
         [ObservableProperty] private string? _eventColor;
         [ObservableProperty] private List<Note> _notes;
 
+        //Dynamic UI values
+        [ObservableProperty] private GridLength _eventTimeHeight;
+        [ObservableProperty] private GridLength _eventNotesHeight;
+        [ObservableProperty] private GridLength _notesAddButtonHeight;
+        [ObservableProperty] private GridLength _notesViewHeight;
+
 
         [RelayCommand]
         public async Task DeleteEvent()
@@ -44,7 +50,6 @@ namespace Datez.ViewModels
             string noteContent = await Application.Current.MainPage.DisplayPromptAsync("Add Note", "Note Content:", maxLength: 50, keyboard: Keyboard.Text);
             if (noteContent != null && noteContent.Length > 0)
             {
-
                 Note note = new()
                 {
                     Content = noteContent,
@@ -53,6 +58,7 @@ namespace Datez.ViewModels
 
                 await _noteDb.Add(note);
                 await LoadNotes();
+                SetGridHeights();
             }
         }
 
@@ -61,6 +67,7 @@ namespace Datez.ViewModels
         {
             await _noteDb.Delete(note);
             await LoadNotes();
+            SetGridHeights();
         }
 
         public EventPageViewModel(IDatabase<Event> eventDatabase, IDatabase<Note> notesDatabase, IServiceProvider serviceProvider)
@@ -78,6 +85,8 @@ namespace Datez.ViewModels
                 TimeLeft = Event.TimeDifferenceString;
                 EventName = Event.Name;
                 EventColor = Event.ProgressBarColor;
+
+                SetGridHeights();
             }
         }
 
@@ -86,6 +95,24 @@ namespace Datez.ViewModels
             var notes = await _noteDb.GetAll();
             var eventNotes = notes.Where(ev => ev.EventId == Event.Id);
             Notes = eventNotes.ToList();
+        }
+
+        private void SetGridHeights()
+        {
+            if (Notes.Count > 0)
+            {
+                EventTimeHeight = new GridLength(60, GridUnitType.Star);
+                EventNotesHeight = new GridLength(50, GridUnitType.Star);
+                NotesAddButtonHeight = new GridLength(20, GridUnitType.Star);
+                NotesViewHeight = new GridLength(80, GridUnitType.Star);
+            }
+            else
+            {
+                EventTimeHeight = new GridLength(60, GridUnitType.Star);
+                EventNotesHeight = new GridLength(10, GridUnitType.Star);
+                NotesAddButtonHeight = new GridLength(100, GridUnitType.Star);
+                NotesViewHeight = new GridLength(0, GridUnitType.Star);
+            }
         }
     }
 }

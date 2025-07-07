@@ -11,8 +11,8 @@
     
     <Grid BackgroundColor="{Binding EventColor}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="60*" />
-            <RowDefinition Height="50*" />
+            <RowDefinition Height="{Binding EventTimeHeight}" />
+            <RowDefinition Height="{Binding EventNotesHeight}" />
         </Grid.RowDefinitions>
 
         <Border BackgroundColor="{Binding EventColor}" StrokeThickness="0"  Grid.Row="0">
@@ -27,8 +27,8 @@
         <Border Grid.Row="1" BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 40" Margin="12, 25, 12, 25">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="20*" />
-                    <RowDefinition Height="80*" />
+                    <RowDefinition Height="{Binding NotesAddButtonHeight}" />
+                    <RowDefinition Height="{Binding NotesViewHeight}" />
                 </Grid.RowDefinitions>
 
                 <Button Margin="5" Text="Add note" FontSize="Body"  BackgroundColor="White" TextColor="{Binding EventColor}" Command="{Binding AddNoteCommand}" />
