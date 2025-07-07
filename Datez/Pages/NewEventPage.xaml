@@ -29,6 +29,7 @@
                     Grid.Column="0" 
                     BackgroundColor="#ED6A5A" 
                     Margin="10" 
+                    BorderColor="Black"
                     BorderWidth="{Binding EventColor, 
                         Converter={StaticResource ColorSelectionConverter}, ConverterParameter=#ED6A5A}"                     
                     Command="{Binding SelectColorCommand}" CommandParameter="#ED6A5A" />
@@ -37,6 +38,7 @@
                     Grid.Column="1" 
                     BackgroundColor="#F4F1BB" 
                     Margin="10" 
+                    BorderColor="Black"
                     BorderWidth="{Binding EventColor, 
                         Converter={StaticResource ColorSelectionConverter}, ConverterParameter=#F4F1BB}"                     
                     Command="{Binding SelectColorCommand}" CommandParameter="#F4F1BB" />
@@ -45,6 +47,7 @@
                     Grid.Column="2" 
                     BackgroundColor="#9BC1BC" 
                     Margin="10"
+                    BorderColor="Black"
                     BorderWidth="{Binding EventColor, 
                         Converter={StaticResource ColorSelectionConverter}, ConverterParameter=#9BC1BC}" 
                     Command="{Binding SelectColorCommand}" CommandParameter="#9BC1BC" />
@@ -53,6 +56,7 @@
                     Grid.Column="3" 
                     BackgroundColor="#5D576B" 
                     Margin="10" 
+                    BorderColor="Black"
                     BorderWidth="{Binding EventColor, 
                         Converter={StaticResource ColorSelectionConverter}, ConverterParameter=#5D576B}"
                     Command="{Binding SelectColorCommand}" CommandParameter="#5D576B" />
@@ -61,6 +65,7 @@
                     Grid.Column="4" 
                     BackgroundColor="#E6EBE0" 
                     Margin="10" 
+                    BorderColor="Black"
                     BorderWidth="{Binding EventColor, 
                         Converter={StaticResource ColorSelectionConverter}, ConverterParameter=#E6EBE0}"
                     Command="{Binding SelectColorCommand}" CommandParameter="#E6EBE0" />
