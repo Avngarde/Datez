@@ -25,14 +25,14 @@
                    Text="{Binding TimeLeft}" />
         </Border>
 
-        <Border Grid.Row="1" BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 40" Margin="12, 25, 12, 25">
+        <Border Grid.Row="1" BackgroundColor="{AppThemeBinding Light={StaticResource White},Dark={StaticResource Gray950}}" StrokeThickness="0" StrokeShape="RoundRectangle 40" Margin="12, 25, 12, 25">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="{Binding NotesAddButtonHeight}" />
                     <RowDefinition Height="{Binding NotesViewHeight}" />
                 </Grid.RowDefinitions>
 
-                <Button Margin="5" Text="Add note" FontSize="Body"  BackgroundColor="White" TextColor="{Binding EventColor}" Command="{Binding AddNoteCommand}" />
+                <Button Margin="5" Text="Add note" FontSize="Body"  BackgroundColor="Transparent" TextColor="{Binding EventColor}" Command="{Binding AddNoteCommand}" />
 
                 <ScrollView Margin="5" Grid.Row="1">
                     <StackLayout BindableLayout.ItemsSource="{Binding Notes}" x:Name="NotesGrid">
