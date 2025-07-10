@@ -5,6 +5,7 @@ using Datez.Db;
 using Datez.Helpers.Models;
 using Datez.Messages;
 using Datez.Models;
+using Datez.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,18 @@ namespace Datez.ViewModels
             {
                 WeakReferenceMessenger.Default.Send(new RefreshEventsMessage());
                 await Application.Current.MainPage.Navigation.PopAsync(true);
+            }
+        }
+
+        [RelayCommand]
+        public async Task OpenEditEvent()
+        {
+            var ev = await _eventDb.Get(Event.Id);
+            if (ev is not null)
+            {
+                var editEventPage = _serviceProvider.GetRequiredService<EditEventPage>();
+                editEventPage.PassEvent(ev);
+                await Application.Current.MainPage.Navigation.PushAsync(editEventPage);
             }
         }
 

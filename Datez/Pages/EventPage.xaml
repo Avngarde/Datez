@@ -6,6 +6,7 @@
              Title="{Binding EventName}">
 
     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit" Command="{Binding OpenEditEventCommand}" />
         <ToolbarItem Text="Delete" Command="{Binding DeleteEventCommand}" />
     </ContentPage.ToolbarItems> 
     
