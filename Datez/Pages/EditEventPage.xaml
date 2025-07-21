@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Datez.Pages.EditEventPage"
+            xmlns:converters="clr-namespace:Datez.Converters"
+             Title="EditEventPage">
+
+<ContentPage.Resources>
+    <converters:ColorSelectionConverter x:Key="ColorSelectionConverter" />
+</ContentPage.Resources>             
+
+    <VerticalStackLayout Margin="10" Padding="10">
+        <Label Margin="5" Text="Event name" />
+            <Entry Margin="5" Text="{Binding EventName}" />
+            <Label Margin="5" Text="Event's date" />
+            <DatePicker Margin="5" Date="{Binding EventDate}" MinimumDate="{Binding MinimalDate}" />
+
+            <Label Margin="5" Text="Color" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="10*" />
+                </Grid.ColumnDefinitions>
+
+                <Button 
+                    Grid.Column="0" 
+                    BackgroundColor="#ED6A5A" 
+                    Margin="10" 
+                    BorderColor="Black"
+                    BorderWidth="{Binding EventColor, 
+                        Converter={StaticResource ColorSelectionConverter}, ConverterParameter=#ED6A5A}"                     
+                    Command="{Binding SelectColorCommand}" CommandParameter="#ED6A5A" />
+
+                <Button 
+                    Grid.Column="1" 
+                    BackgroundColor="#F4F1BB" 
+                    Margin="10" 
+                    BorderColor="Black"
+                    BorderWidth="{Binding EventColor, 
+                        Converter={StaticResource ColorSelectionConverter}, ConverterParameter=#F4F1BB}"                     
+                    Command="{Binding SelectColorCommand}" CommandParameter="#F4F1BB" />
+
+                <Button 
+                    Grid.Column="2" 
+                    BackgroundColor="#9BC1BC" 
+                    Margin="10"
+                    BorderColor="Black"
+                    BorderWidth="{Binding EventColor, 
+                        Converter={StaticResource ColorSelectionConverter}, ConverterParameter=#9BC1BC}" 
+                    Command="{Binding SelectColorCommand}" CommandParameter="#9BC1BC" />
+
+                <Button 
+                    Grid.Column="3" 
+                    BackgroundColor="#5D576B" 
+                    Margin="10" 
+                    BorderColor="Black"
+                    BorderWidth="{Binding EventColor, 
+                        Converter={StaticResource ColorSelectionConverter}, ConverterParameter=#5D576B}"
+                    Command="{Binding SelectColorCommand}" CommandParameter="#5D576B" />
+
+                <Button 
+                    Grid.Column="4" 
+                    BackgroundColor="#E6EBE0" 
+                    Margin="10" 
+                    BorderColor="Black"
+                    BorderWidth="{Binding EventColor, 
+                        Converter={StaticResource ColorSelectionConverter}, ConverterParameter=#E6EBE0}"
+                    Command="{Binding SelectColorCommand}" CommandParameter="#E6EBE0" />
+
+            </Grid>
+
+            <Button Margin="5,10,5,5" Text="Add" Command="{Binding EditEventCommand}" />
+    </VerticalStackLayout>
+</ContentPage>

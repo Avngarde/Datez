@@ -43,7 +43,7 @@ public class EventsTests
     }
 
     [Fact]
-    public async Task CalculateCurrentAndEventFinishDateDifference()
+    public async Task CalculateEventDatesDifference_ReturnsTimeDifference()
     {
         DateTime finish = DateTime.Parse("2025-01-04 12:23");
         DateTime currentDate = DateTime.Parse("2024-01-02 10:30");
