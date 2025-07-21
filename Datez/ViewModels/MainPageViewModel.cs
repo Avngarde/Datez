@@ -47,7 +47,7 @@ public partial class MainPageViewModel : ObservableObject
         _serviceProvider = serviceProvider;
         _eventDb = eventDatabase;
 
-        WeakReferenceMessenger.Default.Register<RefreshEventsMessage>(this, async (r, m) =>
+        WeakReferenceMessenger.Default.Register<RefreshEventsGridMessage>(this, async (r, m) =>
         {
             await LoadEvents();
         });
@@ -66,7 +66,7 @@ public partial class MainPageViewModel : ObservableObject
                     Id = ev.Id,
                     Name = ev.Name,
                     EventDate = ev.EventDate,
-                    TimeDifferenceString = CreateTimeDifferenceString(timeDifference),
+                    TimeDifferenceString = TimeDifference.CreateTimeDifferenceString(timeDifference),
                     TimeDifferenceProgress = TimeDifference.CalculateTimeProgress(timeDifference.Days, ev.OriginalDaysDifference),
                     ProgressBarColor = ev.ProgressBarColor ?? "#08C2FF"
                 }
@@ -74,24 +74,5 @@ public partial class MainPageViewModel : ObservableObject
         }
 
         IsLoading = false;
-    }
-
-    private string CreateTimeDifferenceString(TimeDiff diff)
-    {
-        string timeDiff = "";
-
-        if (diff.Days <= 0 && diff.Months <= 0 && diff.Years <= 0)
-            return "Event Due";
-
-        if (diff.Days > 0)
-            timeDiff += $"{diff.Days} Days";
-
-        if (diff.Months > 0)
-            timeDiff += $", {diff.Months} Months";
-
-        if (diff.Years > 0)
-            timeDiff += $", {diff.Years} Years";
-
-        return timeDiff;
     }
 }

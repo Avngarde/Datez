@@ -34,7 +34,7 @@ public partial class NewEventPageViewModel : ObservableObject
 
         await _eventDb.Add(ev);
 
-        WeakReferenceMessenger.Default.Send(new RefreshEventsMessage());
+        WeakReferenceMessenger.Default.Send(new RefreshEventsGridMessage());
         await Application.Current.MainPage.Navigation.PopAsync(true);
     }
 

@@ -44,6 +44,25 @@ namespace Datez.Helpers
             };
         }
 
+        public static string CreateTimeDifferenceString(TimeDiff diff)
+        {
+            string timeDiff = "";
+
+            if (diff.Days <= 0 && diff.Months <= 0 && diff.Years <= 0)
+                return "Event Due";
+
+            if (diff.Days > 0)
+                timeDiff += $"{diff.Days} Days";
+
+            if (diff.Months > 0)
+                timeDiff += $", {diff.Months} Months";
+
+            if (diff.Years > 0)
+                timeDiff += $", {diff.Years} Years";
+
+            return timeDiff;
+        }
+
         public static int CalculateTimeProgress(int daysDifference, int originalDaysDifference)
         {
             double percent = (double)daysDifference / (double)originalDaysDifference;

@@ -9,7 +9,7 @@ namespace Datez.Messages
     /// <summary>
     /// Used to refresh events in MainPage
     /// </summary>
-    public class RefreshEventsMessage
+    public class RefreshEventsGridMessage
     {
     }
 }

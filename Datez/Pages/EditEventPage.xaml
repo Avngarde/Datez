@@ -72,6 +72,6 @@
 
             </Grid>
 
-            <Button Margin="5,10,5,5" Text="Add" Command="{Binding EditEventCommand}" />
+            <Button Margin="5,10,5,5" Text="Edit" Command="{Binding EditEventCommand}" />
     </VerticalStackLayout>
 </ContentPage>

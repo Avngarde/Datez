@@ -2,10 +2,13 @@
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Datez.Db;
+using Datez.Helpers;
 using Datez.Helpers.Models;
 using Datez.Messages;
 using Datez.Models;
 using Datez.Pages;
+using Microsoft.Extensions.Logging;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +46,7 @@ namespace Datez.ViewModels
                 int result = await _eventDb.Delete(ev);
                 if (result > 0)
                 {
-                    WeakReferenceMessenger.Default.Send(new RefreshEventsMessage());
+                    WeakReferenceMessenger.Default.Send(new RefreshEventsGridMessage());
                     await Application.Current.MainPage.Navigation.PopAsync(true);
                 }
             }
@@ -111,6 +114,11 @@ namespace Datez.ViewModels
             _serviceProvider = serviceProvider;
             _eventDb = eventDatabase;
             _noteDb = notesDatabase;
+
+            WeakReferenceMessenger.Default.Register<RefreshEventMessage>(this, async (r, m) =>
+            {
+                await ReloadEvent();
+            });
         }
 
         public async Task LoadEvent()
@@ -124,6 +132,22 @@ namespace Datez.ViewModels
 
                 SetGridHeights();
             }
+        }
+
+        public async Task ReloadEvent()
+        {
+            Event ev = await _eventDb.Get(Event.Id);
+
+            TimeDiff timeDifference = TimeDifference.Calculate(ev.EventDate, DateTime.Now);
+            Event.Name = ev.Name;
+            Event.EventDate = ev.EventDate;
+            Event.TimeDifferenceString = TimeDifference.CreateTimeDifferenceString(timeDifference);
+            Event.TimeDifferenceProgress = TimeDifference.CalculateTimeProgress(timeDifference.Days, ev.OriginalDaysDifference);
+            Event.ProgressBarColor = ev.ProgressBarColor;
+
+            EventName = Event.Name;
+            TimeLeft = Event.TimeDifferenceString;
+            EventColor = Event.ProgressBarColor;
         }
 
         private async Task LoadNotes()
