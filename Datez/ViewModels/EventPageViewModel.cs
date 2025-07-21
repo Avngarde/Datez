@@ -78,9 +78,13 @@ namespace Datez.ViewModels
         [RelayCommand]
         public async Task DeleteNote(Note note)
         {
-            await _noteDb.Delete(note);
-            await LoadNotes();
-            SetGridHeights();
+            bool deleteNote = await Application.Current.MainPage.DisplayAlert("Warning", $"Are you sure you want to delete: {note.Content}", "Yes", "No");
+            if (deleteNote)
+            {
+                await _noteDb.Delete(note);
+                await LoadNotes();
+                SetGridHeights();
+            }
         }
 
         [RelayCommand]
