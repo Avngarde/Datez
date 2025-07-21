@@ -36,12 +36,16 @@ namespace Datez.ViewModels
         [RelayCommand]
         public async Task DeleteEvent()
         {
-            var ev = await _eventDb.Get(Event.Id);
-            int result = await _eventDb.Delete(ev);
-            if (result > 0)
+            bool deleteEvent = await Application.Current.MainPage.DisplayAlert("Warning", $"Are you sure you want to delete: {Event.Name}", "Yes", "No");
+            if (deleteEvent)
             {
-                WeakReferenceMessenger.Default.Send(new RefreshEventsMessage());
-                await Application.Current.MainPage.Navigation.PopAsync(true);
+                var ev = await _eventDb.Get(Event.Id);
+                int result = await _eventDb.Delete(ev);
+                if (result > 0)
+                {
+                    WeakReferenceMessenger.Default.Send(new RefreshEventsMessage());
+                    await Application.Current.MainPage.Navigation.PopAsync(true);
+                }
             }
         }
 
