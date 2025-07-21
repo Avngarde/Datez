@@ -37,21 +37,23 @@
                     <StackLayout BindableLayout.ItemsSource="{Binding Notes}" x:Name="NotesGrid">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
-                                <SwipeView>
-                                    <SwipeView.RightItems>
-                                        <SwipeItems>
-                                            <SwipeItem Text="Delete"
-                                                    BackgroundColor="LightCoral"
+                                <Border Margin="8" Padding="8" StrokeShape="RoundRectangle 5" StrokeThickness="2">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80*" />
+                                            <ColumnDefinition Width="30*" />
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <Label Text="{Binding Content}" Grid.Column="0" VerticalOptions="Center" />
+                                        <HorizontalStackLayout Grid.Column="2" VerticalOptions="Center">
+                                            <Button Background="Transparent"  Margin="2" Padding="0" TextColor="Blue" Text="Edit"  />
+                                            <Button Background="Transparent" Margin="2" Padding="0" TextColor="LightCoral" Text="Delete" 
                                                     Command="{Binding Path=BindingContext.DeleteNoteCommand, Source={x:Reference Name=NotesGrid}}"
-                                                    CommandParameter="{Binding .}" 
-                                                    IsDestructive="True"/>
-                                            </SwipeItems>
-                                    </SwipeView.RightItems>
+                                                    CommandParameter="{Binding .}"   />
+                                        </HorizontalStackLayout>
+                                    </Grid>
 
-                                    <Border Margin="8" Padding="8" StrokeShape="RoundRectangle 5" StrokeThickness="2">
-                                        <Label Text="{Binding Content}" /> 
-                                    </Border>
-                                </SwipeView>
+                                </Border>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
                     </StackLayout>
