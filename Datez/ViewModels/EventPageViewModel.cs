@@ -83,6 +83,21 @@ namespace Datez.ViewModels
             SetGridHeights();
         }
 
+        [RelayCommand]
+        public async Task EditNote(Note note)
+        {
+            string noteContent = await Application.Current.MainPage.DisplayPromptAsync("Edit Note", "Note Content:", 
+                maxLength: 50, keyboard: Keyboard.Text, initialValue: note.Content);
+
+            if (noteContent != null && noteContent.Length > 0)
+            {
+                note.Content = noteContent;
+                await _noteDb.Edit(note);
+                await LoadNotes();
+                SetGridHeights();
+            }
+        }
+
         public EventPageViewModel(IDatabase<Event> eventDatabase, IDatabase<Note> notesDatabase, IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;

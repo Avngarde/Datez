@@ -47,7 +47,10 @@
                                         
                                         <Label Text="{Binding Content}" Grid.Column="0" VerticalOptions="Center" />
                                         <HorizontalStackLayout Grid.Column="2" VerticalOptions="Center">
-                                            <Button Background="Transparent"  Margin="2" Padding="0" TextColor="Blue" Text="Edit"  />
+                                            <Button Background="Transparent"  Margin="2" Padding="0" TextColor="Blue" Text="Edit"  
+                                                    Command="{Binding Path=BindingContext.EditNoteCommand, Source={x:Reference Name=NotesGrid}}"
+                                                    CommandParameter="{Binding .}"   />
+
                                             <Button Background="Transparent" Margin="2" Padding="0" TextColor="LightCoral" Text="Delete" 
                                                     Command="{Binding Path=BindingContext.DeleteNoteCommand, Source={x:Reference Name=NotesGrid}}"
                                                     CommandParameter="{Binding .}"   />
